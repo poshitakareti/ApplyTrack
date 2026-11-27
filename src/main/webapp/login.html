@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ApplyTrack - Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="brand">
+        <h1>ApplyTrack</h1>
+        <p>Student Placement Portal</p>
+    </div>
+
+    <h2>Student Login</h2>
+
+    <form action="login" method="post">
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required>
+        </div>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+    <p id="message" class="message"></p>
+
+    <p class="register-text">
+        Don't have an account?
+        <a href="register.html">Register here</a>
+    </p>
+
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get("error");
+    const message = document.getElementById("message");
+
+    if (error === "credentials") {
+        message.textContent = "Incorrect email or password.";
+        message.className = "message error-message";
+    } else if (error === "invalid") {
+        message.textContent = "Please enter your email and password.";
+        message.className = "message error-message";
+    } else if (error === "failed") {
+        message.textContent = "Login failed. Please try again.";
+        message.className = "message error-message";
+    } else if (params.get("logout") === "success") {
+        message.textContent = "You have logged out successfully!";
+        message.className = "message success-message";
+    }
+</script>
+
+</body>
+</html>
